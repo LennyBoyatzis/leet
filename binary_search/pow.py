@@ -19,8 +19,6 @@ def my_pow(x, n):
 
 
 if __name__ == '__main__':
-    # x = 2.0000
-    # n = -2
     x = 2
     n = 10
     result = my_pow(x, n)
