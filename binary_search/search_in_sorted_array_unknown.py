@@ -1,5 +1,3 @@
-from typing import List
-
 OUT_OF_BOUNDS = 2147483647
 
 
@@ -31,9 +29,6 @@ def search(reader: Reader, target: int):
         else:
             left = pivot + 1
     return -1
-
-    print(f'left {left}')
-    print(f'right {right}')
 
 
 if __name__ == '__main__':
