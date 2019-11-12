@@ -9,7 +9,6 @@ def valid_perfect_square(num: int) -> bool:
         pivot_squared = pivot**2
 
         if pivot_squared == num:
-            print(f'pivot is {pivot}')
             return True
         elif pivot_squared > num:
             right = pivot - 1
