@@ -1,3 +1,6 @@
+from collections import deque
+
+
 class TreeNode():
     def __init__(self, x):
         self.val = x
@@ -5,23 +8,28 @@ class TreeNode():
         self.right = None
 
 
-def postorder_traversal(root):
+def levelorder_traversal(root):
     if root is None:
         return
 
-    stack = [root]
-    explored = []
+    queue = deque([root])
+    depth = 0
+    levels = []
 
-    while stack:
-        node = stack.pop()
-        explored.append(node.val)
+    while queue:
+        levels.append([])
+        level_length = len(queue)
 
-        if node.left:
-            stack.append(node.left)
-        if node.right:
-            stack.append(node.right)
+        for i in range(level_length):
+            node = queue.popleft()
+            levels[depth].append(node.val)
 
-    return explored[::-1]
+            if node.left:
+                queue.append(node.left)
+            if node.right:
+                queue.append(node.right)
+        depth += 1
+    return levels
 
 
 if __name__ == '__main__':
@@ -47,5 +55,5 @@ if __name__ == '__main__':
     g.right = i
     i.left = h
 
-    result = postorder_traversal(f)
+    result = levelorder_traversal(f)
     print(f'result {result}')

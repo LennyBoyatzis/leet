@@ -5,23 +5,22 @@ class TreeNode():
         self.right = None
 
 
-def postorder_traversal(root):
+def levelorder_traversal(root, levels=[], depth=0):
     if root is None:
         return
 
-    stack = [root]
-    explored = []
+    if len(levels) == depth:
+        levels.append([])
 
-    while stack:
-        node = stack.pop()
-        explored.append(node.val)
+    levels[depth].append(root.val)
 
-        if node.left:
-            stack.append(node.left)
-        if node.right:
-            stack.append(node.right)
+    if root.left:
+        levelorder_traversal(root.left, levels, depth=depth+1)
 
-    return explored[::-1]
+    if root.right:
+        levelorder_traversal(root.right, levels, depth=depth+1)
+
+    return levels
 
 
 if __name__ == '__main__':
@@ -47,5 +46,5 @@ if __name__ == '__main__':
     g.right = i
     i.left = h
 
-    result = postorder_traversal(f)
+    result = levelorder_traversal(f)
     print(f'result {result}')
