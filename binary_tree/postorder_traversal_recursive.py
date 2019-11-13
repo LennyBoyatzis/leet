@@ -5,8 +5,19 @@ class TreeNode():
         self.right = None
 
 
-def postorder_traversal(root):
-    pass
+def postorder_traversal(root, visited=[]):
+    if root is None:
+        return
+
+    if root.left:
+        postorder_traversal(root.left)
+
+    if root.right:
+        postorder_traversal(root.right)
+
+    visited.append(root.val)
+
+    return visited
 
 
 if __name__ == '__main__':

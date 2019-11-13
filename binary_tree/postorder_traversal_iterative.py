@@ -6,7 +6,22 @@ class TreeNode():
 
 
 def postorder_traversal(root):
-    pass
+    if root is None:
+        return
+
+    stack = [root]
+    explored = []
+
+    while stack:
+        node = stack.pop()
+        explored.append(node.val)
+
+        if node.left:
+            stack.append(node.left)
+        if node.right:
+            stack.append(node.right)
+
+    return explored
 
 
 if __name__ == '__main__':
